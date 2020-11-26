@@ -20,13 +20,29 @@ namespace CleanCodeLabb1Test
         {
             using (StringWriter stringWriter = new StringWriter())
             {
-                Console.SetOut(stringWriter); // Där den skriver ut texten kopplas StringWritern in istället. Det är inte trådsäkert. Sidoeffekt.
+                Console.SetOut(stringWriter);
 
-                // Act
                 program.Fizzbuzz(15);
 
-                // Assert
-                var expected = string.Format("{0}", Environment.NewLine);
+                string expected = null;
+                var newLine = Environment.NewLine;
+
+                for (int i = 1; i < 16; i++)
+                {
+
+                    if (i % 3 == 0 && i % 5 == 0)
+                        expected += string.Format($"{i}: Fizzbuzz{newLine}");
+
+                    else if(i % 3 == 0)
+                        expected += string.Format($"{i}: Fizz{newLine}");
+
+                    else if(i % 5 == 0)
+                        expected += string.Format($"{i}: Buzz{newLine}");
+
+                    else
+                        expected += string.Format($"{i}{newLine}");
+                }
+
                 Assert.AreEqual(expected, stringWriter.ToString());
             }
         }

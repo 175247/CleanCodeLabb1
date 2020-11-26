@@ -1,2 +1,7 @@
 # CleanCodeLabb1
-Fizzbuzz
+Fizzbuzz, CleanCode labb 1
+Klass: .NET 2019
+
+Deltagare:
+Simon Tillström
+Alexander Molnar

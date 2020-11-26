@@ -4,25 +4,34 @@ namespace CleanCodeLabb1
 {
     public class Program
     {
+
         public static void Main(string[] args)
         {
-            Console.WriteLine("Enter a max number:");
-
             try
             {
-                int userDefinedMax = Convert.ToInt32(Console.ReadLine());
-                if (userDefinedMax < 1 || userDefinedMax > 300)
-                {
-                    Console.WriteLine("Invalid input.", Environment.NewLine);
-                    Main(args);
-                }
-
                 Program program = new Program();
-                program.Fizzbuzz(userDefinedMax);
+                program.GetUserDefinedMax(program);
+                
             }
             catch(Exception e)
             {
                 Console.WriteLine(e.StackTrace);
+            }
+        }
+
+        public void GetUserDefinedMax(Program program)
+        {
+            Console.WriteLine("Enter a max number between 1 and 300:");
+
+            int userDefinedMax = Convert.ToInt32(Console.ReadLine());
+
+            if (userDefinedMax < 1 || userDefinedMax > 300)
+            {
+                GetUserDefinedMax(program);
+            }
+            else
+            {
+                program.Fizzbuzz(userDefinedMax);
             }
         }
 

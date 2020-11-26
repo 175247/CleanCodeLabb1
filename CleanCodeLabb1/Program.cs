@@ -6,12 +6,23 @@ namespace CleanCodeLabb1
     {
         public static void Main(string[] args)
         {
-            Console.WriteLine("Hello World!");
+            Console.WriteLine("Enter a max number:");
+
+            try
+            {
+                int userDefinedMax = Convert.ToInt32(Console.ReadLine());
+                Program program = new Program();
+                program.Fizzbuzz(userDefinedMax);
+            }
+            catch(Exception e)
+            {
+                Console.WriteLine(e.StackTrace);
+            }
         }
 
-        public string Fizzbuzz()
+        public string Fizzbuzz(int userDefinedMax)
         {
-            for (int i = 0; i < 300; i++)
+            for (int i = 0; i < userDefinedMax; i++)
             {
                 if (i == 42)
                     Console.WriteLine("Answer to the Ultiamte Question of Life, the Universe, and Everything");

@@ -6,11 +6,11 @@ namespace CleanCodeLabb1
     {
         public static void Main(string[] args)
         {
+            Program program = new Program();
+
             try
             {
-                Program program = new Program();
-                program.GetUserDefinedMax(program);
-                
+                Console.WriteLine(program.GetUserDefinedMax(program, 15));
             }
             catch(Exception e)
             {
@@ -18,40 +18,56 @@ namespace CleanCodeLabb1
             }
         }
 
-        public void GetUserDefinedMax(Program program)
+        public string GetUserDefinedMax(Program program, int testValue)
         {
             Console.WriteLine("Enter a max number between 1 and 300:");
 
             int userDefinedMax = Convert.ToInt32(Console.ReadLine());
 
-            if (userDefinedMax < 1 || userDefinedMax > 300)
+            if (testValue < 1 || testValue > 300)
             {
-                GetUserDefinedMax(program);
+                GetUserDefinedMax(program, testValue);
             }
-            else
-            {
-                program.Fizzbuzz(userDefinedMax);
-            }
+            
+            return program.Fizzbuzz(testValue);
         }
 
-        public void Fizzbuzz(int userDefinedMax)
+        public string Fizzbuzz(int userDefinedMax)
         {
+            string result = null;
             for (int i = 1; i <= userDefinedMax; i++)
             {
                 if (i == 42)
+                {
                     Console.WriteLine("{0}: Answer to the Ultiamte Question of Life, the Universe, and Everything", i);
+                    result += $"{0}: Answer to the Ultiamte Question of Life, the Universe, and Everything" + i;
+                }
 
                 else if (i % 3 == 0 && i % 5 == 0)
+                {
                     Console.WriteLine("{0}: Fizzbuzz", i);
+                    result += $"{0}: Fizzbuzz" + i;
+                }
 
                 else if (i % 3 == 0)
+                {
                     Console.WriteLine("{0}: Fizz", i);
+                    result += $"{0}: Fizz" + i;
+                }
 
                 else if (i % 5 == 0)
+                {
                     Console.WriteLine("{0}: Buzz", i);
+                    result += $"{0}: Buzz" + i;
+                }
                 else
+                {
                     Console.WriteLine(i);
+                    result += i;
+                }
             }
+            
+            return result;
         }
     }
 }

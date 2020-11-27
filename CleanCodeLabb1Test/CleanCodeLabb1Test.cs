@@ -22,14 +22,13 @@ namespace CleanCodeLabb1Test
             {
                 Console.SetOut(stringWriter);
 
-                program.Fizzbuzz(15);
+                program.Fizzbuzz(1);
 
                 string expected = null;
                 var newLine = Environment.NewLine;
 
-                for (int i = 1; i < 16; i++)
+                for (int i = 1; i < 2; i++)
                 {
-
                     if (i % 3 == 0 && i % 5 == 0)
                         expected += string.Format($"{i}: Fizzbuzz{newLine}");
 
@@ -45,6 +44,16 @@ namespace CleanCodeLabb1Test
 
                 Assert.AreEqual(expected, stringWriter.ToString());
             }
+        }
+
+        [TestMethod]
+        public void MockConsoleTest()
+        {
+            program = new Program();
+            var testValue = 15;
+            IConsole console = new MockConsole();
+            string expected = program.GetUserDefinedMax(program, testValue);
+            Assert.AreEqual(expected, console.ReadLine(testValue));
         }
     }
 }

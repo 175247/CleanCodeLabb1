@@ -10,7 +10,7 @@ namespace CleanCodeLabb1
             {
                 Program program = new Program();
                 program.GetUserDefinedMax(program);
-                
+
             }
             catch(Exception e)
             {
@@ -21,9 +21,8 @@ namespace CleanCodeLabb1
         public void GetUserDefinedMax(Program program)
         {
             Console.WriteLine("Enter a max number between 1 and 300:");
-
             int userDefinedMax = Convert.ToInt32(Console.ReadLine());
-
+            
             if (userDefinedMax < 1 || userDefinedMax > 300)
             {
                 GetUserDefinedMax(program);

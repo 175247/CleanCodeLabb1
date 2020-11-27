@@ -16,18 +16,36 @@ namespace CleanCodeLabb1Test
         }
 
         [TestMethod]
+        public void GetUserDefinedMaxTest()
+        {
+            using (StringWriter stringWriter = new StringWriter())
+            {
+                Console.SetOut(stringWriter);
+                var numberInput = new StringReader("2");
+                Console.SetIn(numberInput);
+                var expected = string.Format("Enter a max number between 1 and 300:{0}", Environment.NewLine);
+                var actual = stringWriter.ToString();
+
+                program.GetUserDefinedMax(program);
+                Assert.AreNotEqual(expected, stringWriter.ToString());
+            }
+
+        }
+
+        [TestMethod]
         public void FizzbuzzTest()
         {
             using (StringWriter stringWriter = new StringWriter())
             {
                 Console.SetOut(stringWriter);
 
-                program.Fizzbuzz(15);
+                int numberToTest = 15;
+                program.Fizzbuzz(numberToTest);
 
                 string expected = null;
                 var newLine = Environment.NewLine;
 
-                for (int i = 1; i < 16; i++)
+                for (int i = 1; i < numberToTest + 1; i++)
                 {
 
                     if (i % 3 == 0 && i % 5 == 0)

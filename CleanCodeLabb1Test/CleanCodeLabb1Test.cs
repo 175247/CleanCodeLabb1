@@ -26,10 +26,25 @@ namespace CleanCodeLabb1Test
                 var expected = string.Format("Enter a max number between 1 and 300:{0}", Environment.NewLine);
                 var actual = stringWriter.ToString();
 
-                program.GetUserDefinedMax(program);
+                program.GetUserDefinedMax();
                 Assert.AreNotEqual(expected, stringWriter.ToString());
             }
 
+        }
+
+        [TestMethod]
+        public void GetUserDefinedMaxTestInvalidInput()
+        {
+            using (StringWriter stringWriter = new StringWriter())
+            {
+                Console.SetOut(stringWriter);
+                var numberInput = new StringReader("0");
+                Console.SetIn(numberInput);
+                var expected = string.Format("Enter a max number between 1 and 300:{0}Invalid input.{0}", Environment.NewLine);
+
+                program.GetUserDefinedMax();
+                Assert.AreEqual(expected, stringWriter.ToString());
+            }
         }
 
         [TestMethod]
@@ -55,6 +70,41 @@ namespace CleanCodeLabb1Test
                         expected += string.Format($"{i}: Fizz{newLine}");
 
                     else if(i % 5 == 0)
+                        expected += string.Format($"{i}: Buzz{newLine}");
+
+                    else
+                        expected += string.Format($"{i}{newLine}");
+                }
+
+                Assert.AreEqual(expected, stringWriter.ToString());
+            }
+        }
+
+        [TestMethod]
+        public void TestIfInputIsAnswerToEverything()
+        {
+            using (StringWriter stringWriter = new StringWriter())
+            {
+                Console.SetOut(stringWriter);
+
+                int numberToTest = 42;
+                program.Fizzbuzz(numberToTest);
+
+                string expected = "";
+                var newLine = Environment.NewLine;
+
+                for (int i = 1; i < numberToTest + 1; i++)
+                {
+                    if (i == 42)
+                        expected += string.Format($"{i}: Answer to the Ultiamte Question of Life, the Universe, and Everything{newLine}");
+
+                    else if (i % 3 == 0 && i % 5 == 0)
+                        expected += string.Format($"{i}: Fizzbuzz{newLine}");
+
+                    else if (i % 3 == 0)
+                        expected += string.Format($"{i}: Fizz{newLine}");
+
+                    else if (i % 5 == 0)
                         expected += string.Format($"{i}: Buzz{newLine}");
 
                     else
